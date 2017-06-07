@@ -1,19 +1,9 @@
 import React from 'react';
-import {
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  Button,
-} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+import Input from '../../../../components/input';
 
 export default (props) => {
   const {createDictionary, value, updateValue} = props;
-
-  const onChange = (e) => {
-    e.preventDefault();
-
-    updateValue(e.target.value);
-  }
 
   const onClick = (e) => {
     e.preventDefault();
@@ -25,15 +15,12 @@ export default (props) => {
   return (
     <div className="well">
       <form>
-        <FormGroup>
-          <ControlLabel>Enter new Dictionary's name:</ControlLabel>
-          <FormControl
-            type="text"
-            value={value}
-            placeholder="Enter dictionary name"
-            onChange={onChange}
-          />
-        </FormGroup>
+        <Input
+          label="Enter new Dictionary's name:"
+          value={value}
+          placeholder="Enter dictionary name"
+          onChange={updateValue}
+        />
 
         <Button type="submit" disabled={!value} onClick={onClick}>
           Submit
