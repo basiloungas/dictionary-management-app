@@ -1,9 +1,7 @@
 import {connect} from 'react-redux';
-import {compose, bindActionCreators} from 'redux';
-// import {withState} from 'recompose';
+import {bindActionCreators} from 'redux';
 
 import Component from './component';
-// import {createDictionary} from '../../../../reducers/dictionaries/actions';
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -21,12 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
-    // createDictionary,
   }, dispatch)
 );
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  // withProps({
-  // }),
-)(Component);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);
