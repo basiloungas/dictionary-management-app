@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom'
+
 import buildStore from './store';
 import logo from './logo.svg';
 import './App.css';
@@ -24,6 +29,8 @@ class App extends Component {
 
 export default () => (
   <Provider store={store}>
-    <App />
+    <Router>
+      <Route exact path="/" component={App}/>
+    </Router>
   </Provider>
 );
