@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "name": "Dictionary 1",
     "entries": {
       "Stonegray": "Dark Grey",
@@ -9,7 +9,7 @@
     }
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "Dictionary 2",
     "entries": {
       "Stonegray": "Dark Grey",
