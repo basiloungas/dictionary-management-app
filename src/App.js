@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import {Provider} from 'react-redux';
+import buildStore from './store';
 import logo from './logo.svg';
 import './App.css';
+
+const store = buildStore();
 
 class App extends Component {
   render() {
@@ -18,4 +22,8 @@ class App extends Component {
   }
 }
 
-export default App;
+export default () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
