@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import Component from './component';
+import {deleteEntry} from '../../reducers/dictionaries/actions';
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -19,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
+    onDeleteEntry: deleteEntry,
   }, dispatch)
 );
 
