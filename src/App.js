@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import buildStore from './store';
+import Layout from './components/layout';
 import logo from './logo.svg';
 import './App.css';
 
@@ -30,7 +31,9 @@ class App extends Component {
 export default () => (
   <Provider store={store}>
     <Router>
-      <Route exact path="/" component={App}/>
+      <Layout>
+        <Route exact path="/" component={App}/>
+      </Layout>
     </Router>
   </Provider>
 );
