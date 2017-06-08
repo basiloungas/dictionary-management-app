@@ -40,9 +40,8 @@ export default class Validation {
 
     for (let i = 0; i < length; i++) {
       for (let j = i + 1; j < length; j++) {
-
         if (this.isAlreadyMarked(list[i]) && this.isAlreadyMarked(list[j])) {
-          return;
+          continue;
         }
 
         this.applyRule(list[i], list[j]);
