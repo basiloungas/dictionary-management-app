@@ -2,7 +2,7 @@ import initialState from './sample-data.json';
 import {actionTypes} from './actions';
 import reducers from './reducers';
 
-export default function todos(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CreateDictionary: {
       return reducers.CreateDictionaryReducer(state, action);
