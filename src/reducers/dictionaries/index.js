@@ -3,6 +3,7 @@ import update from 'react-addons-update';
 
 import initialState from './sample-data.json';
 import {actionTypes} from './actions';
+import Validator from '../../services/validator';
 
 
 export default function todos(state = initialState, action) {
@@ -21,6 +22,14 @@ export default function todos(state = initialState, action) {
       const dictionaryIndex = state.findIndex(item => item.id === action.payload);
 
       return update(state, {$splice: [[dictionaryIndex, 1]]});
+    }
+    case actionTypes.ValidateDictionary: {
+      const dictionaryIndex = state.findIndex(item => item.id === action.payload);
+
+      const validator = new Validator();
+      const validatedDictionary = validator.validate(state[dictionaryIndex]);
+
+      return update(state, {$splice: [[dictionaryIndex, 1, validatedDictionary]]});
     }
     case actionTypes.CreateEntry: {
       const {

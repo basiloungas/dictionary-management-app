@@ -1,6 +1,8 @@
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import Component from './component';
+import {validateDictionary} from '../../reducers/dictionaries/actions';
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -16,4 +18,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps)(Component);
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    validateDictionary,
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

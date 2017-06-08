@@ -1,5 +1,6 @@
 export const CreateDictionary = 'CREATE_DICTIONARY';
 export const DeleteDictionary = 'DELETE_DICTIONARY';
+export const ValidateDictionary = 'VALIDATE_DICTIONARY';
 export const CreateEntry = 'CREATE_ENTRY';
 export const DeleteEntry = 'DELETE_ENTRY';
 export const EditEntry = 'EDIT_ENTRY';
@@ -7,6 +8,7 @@ export const EditEntry = 'EDIT_ENTRY';
 export const actionTypes = {
   CreateDictionary,
   DeleteDictionary,
+  ValidateDictionary,
   CreateEntry,
   DeleteEntry,
   EditEntry,
@@ -19,6 +21,11 @@ export const createDictionary = (data) => ({
 
 export const deleteDictionary = (data) => ({
   type: actionTypes.DeleteDictionary,
+  payload: data,
+});
+
+export const validateDictionary = (data) => ({
+  type: actionTypes.ValidateDictionary,
   payload: data,
 });
 
