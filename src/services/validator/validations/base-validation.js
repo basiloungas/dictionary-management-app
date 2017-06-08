@@ -29,8 +29,6 @@ export default class Validation {
   }
 
   markWithError(entry) {
-    this.hasErrors = true;
-
     entry.errors = entry.errors || {};
     entry.errors[this.errorKey] = this.generateErrorDetails();
   }
@@ -43,6 +41,8 @@ export default class Validation {
         if (this.isAlreadyMarked(list[i]) && this.isAlreadyMarked(list[j])) {
           continue;
         }
+
+        this.hasErrors = true;
 
         this.applyRule(list[i], list[j]);
       }

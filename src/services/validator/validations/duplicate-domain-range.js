@@ -8,10 +8,6 @@ export default class DuplicateDomainRangeValidation extends Validation {
   }
 
   applyRule(entryA, entryB) {
-    if (this.isAlreadyMarked(entryA) && this.isAlreadyMarked(entryB)) {
-      return;
-    }
-
     if (entryA.domain === entryB.domain && entryA.range === entryB.range) {
       this.markWithError(entryA);
       this.markWithError(entryB);
