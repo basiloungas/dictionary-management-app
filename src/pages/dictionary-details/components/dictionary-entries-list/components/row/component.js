@@ -1,7 +1,9 @@
 import React from 'react';
+import {Alert} from 'react-bootstrap';
 
 import EditView from './components/edit-view';
 import ShowView from './components/show-view';
+import {Severities} from '../../../../../../services/validator/validations/base-validation';
 
 export default (props) => {
   const {
@@ -38,11 +40,46 @@ export default (props) => {
     toggleEditMode(!editMode);
   }
 
+  const buildErrorMessages = (errors) => {
+    return Object.keys(errors)
+      .map(errorKey => {
+        const {
+          severity,
+          message,
+        } = errors[errorKey];
+
+        const alertType = severity === Severities.Normal
+          ? 'warning'
+          : 'danger';
+
+        return <Alert key={message} bsStyle={alertType}>{message}</Alert>;
+      });
+  }
+
+  const hasErrors = entry.errors && Object.keys(entry.errors).length > 0;
+
+  const errorsContent = hasErrors
+    ? <div className="errors-container">{buildErrorMessages(entry.errors)}</div>
+    : null;
+
   if (editMode) {
-    return <EditView entry={entry} cancelUpdate={editRow} updateRow={updateRow} deleteRow={deleteRow} />
+    return (
+      <EditView
+        errorsContent={errorsContent}
+        entry={entry}
+        cancelUpdate={editRow}
+        updateRow={updateRow}
+        deleteRow={deleteRow}
+      />
+    );
   }
 
   return (
-    <ShowView entry={entry} editRow={editRow} deleteRow={deleteRow} />
-  )
+    <ShowView
+      errorsContent={errorsContent}
+      entry={entry}
+      editRow={editRow}
+      deleteRow={deleteRow}
+    />
+  );
 }

@@ -6,6 +6,7 @@ export default (props) => {
     entry,
     editRow,
     deleteRow,
+    errorsContent,
   } = props;
 
   const {domain, range} = entry;
@@ -23,13 +24,16 @@ export default (props) => {
   }
 
   return (
-    <tr>
-      <td>{domain}</td>
+    <tr className={errorsContent ? 'has-errors' : null}>
+      <td>
+        {domain}
+        {errorsContent}
+      </td>
       <td>{range}</td>
       <td>
         <Button onClick={onEditRow} >Edit</Button>
         <Button bsStyle="danger" onClick={onDeleteRow}>Delete</Button>
       </td>
     </tr>
-  )
+  );
 }

@@ -8,6 +8,7 @@ export default (props) => {
     range,
     updateRange,
 
+    errorsContent,
     updateRow,
     deleteRow,
     cancelUpdate,
@@ -41,8 +42,11 @@ export default (props) => {
   }
 
   return (
-    <tr>
-      <td><input type="text" placeholder="Domain" onChange={handleOnChange(updateDomain)} value={domain} /></td>
+    <tr className={errorsContent ? 'has-errors' : null}>
+      <td>
+        <input type="text" placeholder="Domain" onChange={handleOnChange(updateDomain)} value={domain} />
+        {errorsContent}
+      </td>
       <td><input type="text" placeholder="Range" onChange={handleOnChange(updateRange)} value={range} /></td>
       <td>
         <Button disabled={!domain || !range} onClick={onUpdateRow} >Update</Button>
