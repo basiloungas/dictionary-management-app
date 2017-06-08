@@ -1,81 +1,26 @@
-import uuidV4 from 'uuid/v4';
-import update from 'react-addons-update';
-
 import initialState from './sample-data.json';
 import {actionTypes} from './actions';
-import Validator from '../../services/validator';
-
+import reducers from './reducers';
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case actionTypes.CreateDictionary: {
-      return [
-        {
-          id: uuidV4(),
-          name: action.payload,
-          entries: {}
-        },
-        ...state,
-      ];
+      return reducers.CreateDictionaryReducer(state, action);
     }
     case actionTypes.DeleteDictionary: {
-      const dictionaryIndex = state.findIndex(item => item.id === action.payload);
-
-      return update(state, {$splice: [[dictionaryIndex, 1]]});
+      return reducers.DeleteDictionaryReducer(state, action);
     }
     case actionTypes.ValidateDictionary: {
-      const dictionaryIndex = state.findIndex(item => item.id === action.payload);
-
-      const validator = new Validator();
-      const validatedDictionary = validator.validate(state[dictionaryIndex]);
-
-      return update(state, {$splice: [[dictionaryIndex, 1, validatedDictionary]]});
+      return reducers.ValidateDictionaryReducer(state, action);
     }
     case actionTypes.CreateEntry: {
-      const {
-        dictionaryId,
-        data,
-      } = action.payload;
-
-      const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
-      const dictionary = state[dictionaryIndex];
-      const updatedDictionary = {
-        ...dictionary,
-        entries: [
-          {
-            id: uuidV4(),
-            ...data,
-          },
-          ...dictionary.entries,
-        ]
-      };
-
-      return update(state, {$splice: [[dictionaryIndex, 1, updatedDictionary]]});
+      return reducers.CreateEntryReducer(state, action);
     }
     case actionTypes.EditEntry: {
-      const {
-        dictionaryId,
-        entryId,
-        data,
-      } = action.payload;
-
-      const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
-      const dictionary = state[dictionaryIndex];
-      const entryIndex = dictionary.entries.findIndex(item => item.id === entryId);
-
-      return update(state, {[dictionaryIndex]: {entries: {[entryIndex]: {$merge: data}}}});
+      return reducers.EditEntryReducer(state, action);
     }
     case actionTypes.DeleteEntry: {
-      const {
-        entryId,
-        dictionaryId,
-      } = action.payload;
-
-      const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
-      const dictionary = state[dictionaryIndex];
-      const entryIndex = dictionary.entries.findIndex(item => item.id === entryId);
-
-      return update(state, {[dictionaryIndex]: {entries: {$splice: [[entryIndex, 1]]}}});
+      return reducers.DeleteEntryReducer(state, action);
     }
     default:
       return state
