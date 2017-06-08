@@ -1,10 +1,12 @@
 export const CreateDictionary = 'CREATE_DICTIONARY';
+export const DeleteDictionary = 'DELETE_DICTIONARY';
 export const CreateEntry = 'CREATE_ENTRY';
 export const DeleteEntry = 'DELETE_ENTRY';
 export const EditEntry = 'EDIT_ENTRY';
 
 export const actionTypes = {
   CreateDictionary,
+  DeleteDictionary,
   CreateEntry,
   DeleteEntry,
   EditEntry,
@@ -12,6 +14,11 @@ export const actionTypes = {
 
 export const createDictionary = (data) => ({
   type: actionTypes.CreateDictionary,
+  payload: data,
+});
+
+export const deleteDictionary = (data) => ({
+  type: actionTypes.DeleteDictionary,
   payload: data,
 });
 

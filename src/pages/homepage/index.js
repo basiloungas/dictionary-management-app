@@ -1,6 +1,6 @@
 import React from 'react';
 import {Jumbotron, PageHeader} from 'react-bootstrap';
-import DictionaryList from '../../containers/dictionary-list';
+import DictionaryList from './containers/dictionary-list';
 import DictionaryCreator from './components/dictionary-creator';
 
 export default () => (
