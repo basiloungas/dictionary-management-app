@@ -9,13 +9,33 @@
         "range": "Dark Grey"
       },
       {
+        "id": "entry-11",
+        "domain": "Stonegray",
+        "range": "Some other value"
+      },
+      {
         "id": "entry-2",
+        "domain": "Midnight Black",
+        "range": "Black"
+      },
+      {
+        "id": "entry-22",
         "domain": "Midnight Black",
         "range": "Black"
       },
       {
         "id": "entry-3",
         "domain": "Mystic Silver",
+        "range": "Silver"
+      },
+      {
+        "id": "entry-33",
+        "domain": "Silver",
+        "range": "Some other value"
+      },
+      {
+        "id": "entry-34",
+        "domain": "Some other value",
         "range": "Silver"
       }
     ]
