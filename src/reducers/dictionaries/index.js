@@ -25,18 +25,20 @@ export default function todos(state = initialState, action) {
     case actionTypes.CreateEntry: {
       const {
         dictionaryId,
-        domain,
-        range,
+        data,
       } = action.payload;
 
       const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
       const dictionary = state[dictionaryIndex];
       const updatedDictionary = {
         ...dictionary,
-        entries: {
-          [domain]: range,
+        entries: [
+          {
+            id: uuidV4(),
+            ...data,
+          },
           ...dictionary.entries,
-        }
+        ]
       };
 
       return update(state, {$splice: [[dictionaryIndex, 1, updatedDictionary]]});
@@ -44,45 +46,27 @@ export default function todos(state = initialState, action) {
     case actionTypes.EditEntry: {
       const {
         dictionaryId,
-        domain,
-        range,
+        entryId,
+        data,
       } = action.payload;
 
       const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
       const dictionary = state[dictionaryIndex];
+      const entryIndex = dictionary.entries.findIndex(item => item.id === entryId);
 
-      const newEntries = {
-        ...dictionary.entries,
-        [domain]: range,
-      }
-
-      const updatedDictionary = {
-        ...dictionary,
-        entries: newEntries,
-      };
-
-      return update(state, {$splice: [[dictionaryIndex, 1, updatedDictionary]]});
+      return update(state, {[dictionaryIndex]: {entries: {[entryIndex]: {$merge: data}}}});
     }
     case actionTypes.DeleteEntry: {
       const {
+        entryId,
         dictionaryId,
-        domain,
       } = action.payload;
 
       const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
       const dictionary = state[dictionaryIndex];
+      const entryIndex = dictionary.entries.findIndex(item => item.id === entryId);
 
-      const newEntries = {
-        ...dictionary.entries,
-      };
-      delete newEntries[domain];
-
-      const updatedDictionary = {
-        ...dictionary,
-        entries: newEntries,
-      };
-
-      return update(state, {$splice: [[dictionaryIndex, 1, updatedDictionary]]});
+      return update(state, {[dictionaryIndex]: {entries: {$splice: [[entryIndex, 1]]}}});
     }
     default:
       return state

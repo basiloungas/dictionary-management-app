@@ -9,12 +9,13 @@ import Input from '../../../../components/input';
 
 export default (props) => {
   const {
-    dictionaryId,
-    createEntry,
     domain,
     updateDomain,
     range,
     updateRange,
+
+    dictionaryId,
+    createEntry,
   } = props;
 
   const onClick = (e) => {
@@ -22,8 +23,10 @@ export default (props) => {
 
     createEntry({
       dictionaryId,
-      domain,
-      range,
+      data: {
+        domain,
+        range,
+      },
     });
 
     updateDomain('');

@@ -8,12 +8,12 @@ export default (props) => {
     deleteRow,
   } = props;
 
-  const [domain, range] = entry;
+  const {domain, range} = entry;
 
   const onDeleteRow = (e) => {
     e.preventDefault();
 
-    deleteRow({domain, range});
+    deleteRow();
   }
 
   const onEditRow = (e) => {

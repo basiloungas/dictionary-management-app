@@ -22,7 +22,7 @@ export default (props) => {
 
       <PageHeader>Details for dictionary: "{name}"</PageHeader>
       <EntryCreator dictionaryId={id} />
-      <DictionaryEntriesList dictionaryId={id} entries={Object.entries(entries)} />
+      <DictionaryEntriesList dictionaryId={id} entries={entries} />
     </div>
   );
 }

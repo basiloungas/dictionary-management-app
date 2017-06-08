@@ -5,9 +5,9 @@ import Component from './component';
 
 export default compose(
   withState('domain', 'updateDomain', ({entry}) => {
-    return entry[0] || '';
+    return entry.domain || '';
   }),
   withState('range', 'updateRange', ({entry}) => {
-    return entry[1] || '';
+    return entry.range || '';
   }),
 )(Component);

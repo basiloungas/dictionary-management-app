@@ -1,20 +1,23 @@
 [
   {
     "id": "1",
-    "name": "Dictionary 1",
-    "entries": {
-      "Stonegray": "Dark Grey",
-      "Midnight Black": "Black",
-      "Mystic Silver": "Silver"
-    }
-  },
-  {
-    "id": "2",
-    "name": "Dictionary 2",
-    "entries": {
-      "Stonegray": "Dark Grey",
-      "Midnight Black": "Black",
-      "Mystic Silver": "Silver"
-    }
+    "name": "Sample Dictionary",
+    "entries": [
+      {
+        "id": "entry-1",
+        "domain": "Stonegray",
+        "range": "Dark Grey"
+      },
+      {
+        "id": "entry-2",
+        "domain": "Midnight Black",
+        "range": "Black"
+      },
+      {
+        "id": "entry-3",
+        "domain": "Mystic Silver",
+        "range": "Silver"
+      }
+    ]
   }
 ]

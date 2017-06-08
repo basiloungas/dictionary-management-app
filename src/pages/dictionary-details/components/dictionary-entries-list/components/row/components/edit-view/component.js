@@ -8,7 +8,6 @@ export default (props) => {
     range,
     updateRange,
 
-    entry,
     updateRow,
     deleteRow,
     cancelUpdate,
@@ -32,11 +31,10 @@ export default (props) => {
   const onDeleterow = (e) => {
     e.preventDefault();
 
-    const [domain, range] = entry;
-    deleteRow({domain, range});
+    deleteRow();
   }
 
-  const handleOnChange = (updater) => (e) => {
+  const handleOnChange = updater => e => {
     e.preventDefault();
 
     updater(e.target.value);
@@ -45,7 +43,7 @@ export default (props) => {
   return (
     <tr>
       <td><input type="text" placeholder="Domain" onChange={handleOnChange(updateDomain)} value={domain} /></td>
-      <td><input type="text" placeholder="Domain" onChange={handleOnChange(updateRange)} value={range} /></td>
+      <td><input type="text" placeholder="Range" onChange={handleOnChange(updateRange)} value={range} /></td>
       <td>
         <Button disabled={!domain || !range} onClick={onUpdateRow} >Update</Button>
         <Button onClick={onCancelUpdate} >Cancel</Button>

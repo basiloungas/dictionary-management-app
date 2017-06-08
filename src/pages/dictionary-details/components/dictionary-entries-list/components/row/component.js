@@ -14,21 +14,22 @@ export default (props) => {
     onEditEntry,
   } = props;
 
-  const deleteRow = (entry) => {
+  const deleteRow = () => {
     if (!window.confirm('Are you sure you want to delete this entry?')) {
       return;
     }
 
     onDeleteEntry({
       dictionaryId,
-      ...entry,
+      entryId: entry.id,
     })
   }
 
-  const updateRow = (entry) => {
+  const updateRow = (data) => {
     onEditEntry({
       dictionaryId,
-      ...entry
+      entryId: entry.id,
+      data,
     });
     toggleEditMode(!editMode);
   }
