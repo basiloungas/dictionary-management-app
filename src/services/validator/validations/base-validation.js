@@ -53,10 +53,12 @@ export default class Validation {
   }
 
   applyTo(dictionary) {
+    const entries = this.iterate(dictionary.entries);
+
     return {
       ...dictionary,
       hasErrors: this.hasErrors,
-      entries: this.iterate(dictionary.entries)
+      entries,
     };
   }
 }

@@ -14,8 +14,16 @@ export default class Validator {
     this.taskQueue = this.validations.map(this.taskGenerator);
   }
 
+  resetErrors(dictionary) {
+    return {
+      ...dictionary,
+      hasErrors: false,
+      entries: dictionary.entries.map(entry => ({...entry, errors: {}})),
+    }
+  }
+
   validate(dictionary) {
     // TODO: refactor with requestIdleCallback or requestAnimationFrame or move to webworker
-    return this.taskQueue.reduce((dictionary, task) => task(dictionary), dictionary)
+    return this.taskQueue.reduce((dictionary, task) => task(dictionary), this.resetErrors(dictionary))
   }
 }
