@@ -36,6 +36,28 @@ export default function todos(state = initialState, action) {
 
       return update(state, {$splice: [[dictionaryIndex, 1, updatedDictionary]]});
     }
+    case actionTypes.EditEntry: {
+      const {
+        dictionaryId,
+        domain,
+        range,
+      } = action.payload;
+
+      const dictionaryIndex = state.findIndex(item => item.id === dictionaryId);
+      const dictionary = state[dictionaryIndex];
+
+      const newEntries = {
+        ...dictionary.entries,
+        [domain]: range,
+      }
+
+      const updatedDictionary = {
+        ...dictionary,
+        entries: newEntries,
+      };
+
+      return update(state, {$splice: [[dictionaryIndex, 1, updatedDictionary]]});
+    }
     case actionTypes.DeleteEntry: {
       const {
         dictionaryId,

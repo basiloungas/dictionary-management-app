@@ -8,7 +8,6 @@ import DictionaryEntriesList from './components/dictionary-entries-list';
 export default (props) => {
   const {
     dictionary,
-    onDeleteEntry,
   } = props;
 
   const {
@@ -23,7 +22,7 @@ export default (props) => {
 
       <PageHeader>Details for dictionary: "{name}"</PageHeader>
       <EntryCreator dictionaryId={id} />
-      <DictionaryEntriesList dictionaryId={id} onDeleteEntry={onDeleteEntry} entries={Object.entries(entries)} />
+      <DictionaryEntriesList dictionaryId={id} entries={Object.entries(entries)} />
     </div>
   );
 }
